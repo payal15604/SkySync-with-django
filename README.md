@@ -1,14 +1,14 @@
-### SkySync: A Weather Web App
+# SkySync: A Weather Web App
 
 **SkySync** is a sleek and intuitive weather web application designed to keep you informed about the weather conditions across cities around the world. With SkySync, you can effortlessly track temperature, humidity, wind speed, and visibility for any city you search for. Simply enter the city's name in the input box, and the webpage will display the related weather information. You can also view weather data for multiple cities simultaneously, making it easy to compare conditions across different locations.
 
-#### Key Features:
+### Key Features:
 - Real-time weather tracking for cities worldwide.
 - Detailed information on temperature, humidity, wind speed, and visibility.
 - User-friendly search functionality for quick city lookups.
 - Ability to display weather data for multiple cities at once.
 
-#### Tech Stack:
+### Tech Stack:
 - **HTML**: For structuring the web pages.
 - **CSS**: For styling and ensuring a visually appealing interface.
 - **JavaScript**: For dynamic interactions and seamless user experience.
@@ -39,7 +39,7 @@ Before running this project, ensure you set up the necessary environment variabl
 
 5. **Accessing the Environment**: With the virtual environment activated and the environment variables set, your project will be able to access the API keys securely.
 
-## API Reference
+### API Reference
 
 #### Get Current Weather Data
 
