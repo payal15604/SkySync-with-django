@@ -11,104 +11,90 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
-            background-color: #e9f5ff;
             font-family: Arial, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fHN1bnNldHxlbnwwfHx8fDE2ODUwMzc5NTA&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
-        .weather-card {
-            max-width: 450px;
-            margin: 60px auto;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-            background: linear-gradient(135deg, #ffffff 30%, #f0f8ff);
-            position: relative;
+        .bg-image {
+            border-radius: 35px;
+            overflow: hidden;
         }
 
-        .weather-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .input-group-text {
-            background-color: #f0f8ff;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            color: #333;
-        }
-
-        .weather-icon {
-            font-size: 50px;
-            color: #007bff;
+        .card {
+            border-radius: 40px;
+            overflow: hidden;
             margin-bottom: 20px;
         }
 
-        .weather-info {
-            font-size: 17px;
-            color: #555;
-            text-align: center;
-            line-height: 1.6;
+        .card-img-overlay {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        .weather-btn {
-            background-color: #007bff;
-            border: none;
-            border-radius: 0 5px 5px 0;
+        .overlay-mask {
+            background-color: rgba(190, 216, 232, 0.5);
+        }
+
+        h1 {
             color: #fff;
-            padding: 8px 20px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
         }
 
-        .weather-btn:hover {
-            background-color: #0056b3;
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
-        .sunny-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: #ffce00;
-            font-size: 50px;
-            opacity: 0.8;
+        .row {
+            justify-content: center;
+            align-items: center;
         }
 
-        .city-weather {
-            border-top: 1px solid #d1e9ff;
-            padding-top: 15px;
-            margin-top: 20px;
+        .input-group {
+            justify-content: center;
+        }
+
+        .input-group input {
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <div class="weather-card">
-        <div class="sunny-icon">
-            <i class="bi bi-sun-fill"></i>
-        </div>
-        <h1 class="weather-title">Weather App</h1>
-        <form method="POST" class="input-group mb-4">
-            {% csrf_token %}
-            {{ form.name }}
-            <button class="btn weather-btn" type="submit" id="button-addon2">Get Weather</button>
-        </form>
-        {% for city in data_cities reversed %}
-        <div class="city-weather">
-            <div class="weather-icon text-center">
-                <i class="bi bi-cloud-sun"></i>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-10 col-lg-8 col-xl-6">
+                    <h1 class="text-center mb-4">Weather App</h1>
+                    <form method="POST" class="input-group mb-4">
+                        {% csrf_token %}
+                        {{ form.name }}
+                        <button class="btn btn-primary weather-btn" type="submit">Get Weather</button>
+                    </form>
+                    {% for city in data_cities reversed %}
+                    <div class="card bg-dark text-white">
+                        <div class="bg-image">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/draw1.webp" class="card-img" alt="weather" />
+                            <div class="mask overlay-mask"></div>
+                        </div>
+                        <div class="card-img-overlay text-dark p-5">
+                            <h4 class="mb-0">{{ city.city }}</h4>
+                            <p class="display-2 my-3">{{ city.temperature }}°C</p>
+                            <p class="mb-2">Weather: <strong>{{ city.weather }}</strong></p>
+                            <p>Humidity: <strong>{{ city.humidity }}%</strong></p>
+                            <p>Wind Speed: <strong>{{ city.wind_speed }} m/s</strong></p>
+                            <p>Visibility: <strong>{{ city.visibility }} m</strong></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="weather-info">
-                <h4>{{ city.city }}</h4>
-                <p>Temperature: <strong>{{ city.temperature }}°C</strong></p>
-                <p>Weather: <strong>{{ city.weather }}</strong></p>
-                <p>Humidity: <strong>{{ city.humidity }}%</strong></p>
-                <p>Wind Speed: <strong>{{ city.wind_speed }} m/s</strong></p>
-                <p>Visibility: <strong>{{ city.visibility }} m</strong></p>
-            </div>
         </div>
-        {% endfor %}
-    </div>
+    </section>
 
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
